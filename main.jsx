@@ -815,7 +815,7 @@ export default function App(){
     body:JSON.stringify({email,reactivate_existing:false,send_welcome_email:true})
   });
   setSubscribed(true);
-)}>Get Early Access</button>
+}}>Get Early Access</button>
                     </div>
                     <p style={{fontSize:"11px",color:C.muted,marginTop:"8px"}}>No spam. No credit card. Cancel anytime.</p>
                   </div>
