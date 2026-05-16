@@ -1,4 +1,0 @@
-[build]
-  base = "autopilot-deploy"
-  command = "npm run build"
-  publish = "autopilot-deploy/dist"
