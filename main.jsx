@@ -807,7 +807,15 @@ export default function App(){
                   <div style={{maxWidth:"380px",margin:"0 auto"}}>
                     <div style={{display:"flex",gap:"7px"}}>
                       <input style={{...S.input,flex:1,fontSize:"13px"}} type="email" placeholder="your@email.com" value={email} onChange={e=>setEmail(e.target.value)} onKeyDown={e=>e.key==="Enter"&&email&&setSubscribed(true)}/>
-                      <button style={{background:C.accent,color:C.bg,border:"none",borderRadius:"10px",padding:"10px 14px",fontWeight:700,cursor:"pointer",whiteSpace:"nowrap",fontSize:"13px",fontFamily:"inherit"}} onClick={()=>email&&setSubscribed(true)}>Get Early Access</button>
+                      <button style={{background:C.accent,color:C.bg,border:"none",borderRadius:"10px",padding:"10px 14px",fontWeight:700,cursor:"pointer",whiteSpace:"nowrap",fontSize:"13px",fontFamily:"inherit"}} onClick={()=>{
+  if(!email)return;
+  fetch('https://api.beehiiv.com/v2/publications/YOUR_PUB_ID/subscriptions',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer YOUR_API_KEY'},
+    body:JSON.stringify({email,reactivate_existing:false,send_welcome_email:true})
+  });
+  setSubscribed(true);
+)}>Get Early Access</button>
                     </div>
                     <p style={{fontSize:"11px",color:C.muted,marginTop:"8px"}}>No spam. No credit card. Cancel anytime.</p>
                   </div>
